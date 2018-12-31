@@ -12,16 +12,13 @@ cd cpp-build-system
 
 ## Usage
 
-Create a new project directory:
-
 ```shell
-build -p Calculator
+usage: build [<option> <file_name>] [make]
+
+    -p             creates parent directory with sub directories for a C++ project
+    -n             creates namespace header and source file under src/ and include/
+    -c             creates class header and source file under src/ and include/
+    -s             creates struct header and source file under src/ and include/
+    -h             creates single header file under include/
+    make           generates template Makefile
 ```
-Creates Calculator parent directory with following sub directories and files:
-- Calculator/bin
-- Calculator/build
-- Calculator/include
-- Calculator/lib
-- Calculator/src
-- Calculator/src/main.cpp
-- Calculator/test
