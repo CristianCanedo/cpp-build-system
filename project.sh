@@ -4,29 +4,27 @@
 SUBDIR=( "bin" "build" "include"
          "lib" "src" "test" )
 
-PARENT=""
+buildProject() {
+    createDir $FILE_NAME
 
-build_project() {
-    PARENT="$PWD/$1"
-    mkdir $PARENT
     if [ $? -ne 0 ]; then
         echo "Failed to build project."
         exit 1;
     else 
-        create_subdirs
-        create_src_main
+        createSubDirs
+        createMainCpp
     fi
 }
 
-create_subdirs() {
+createSubDirs() {
     for dir in "${SUBDIR[@]}"
     do
-        mkdir "${PARENT}/${dir}"
+        createDir "${FILE_NAME}/${dir}"
     done
 }
 
-create_src_main() {
-SRC="$PARENT/src"
+createMainCpp() {
+SRC="$FILE_NAME/src"
 cat > $SRC/main.cpp << EOL
 #include <iostream>
 
