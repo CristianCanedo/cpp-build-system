@@ -2,8 +2,8 @@
 
 OPTIND=1 # Reset in case previously used in shell
 
-source $PWD/build-functions.sh
-source $PWD/build-variables.sh
+source build-functions.sh
+source build-variables.sh
 
 if [ $# -eq 0 ]; then
     usage
@@ -11,7 +11,7 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ "$(toLower $1)" == "make" ]; then
-    . $PWD/$MAKE_SCRIPT
+    . $MAKE_SCRIPT
     exit 0
 fi
 
@@ -19,23 +19,23 @@ fi
 while getopts ":p:n:c:s:h:" opt; do
     case "$opt" in
         p)
-            . $PWD/$PROJECT_SCRIPT
+            . $PROJECT_SCRIPT
             setFileNameVariables $OPTARG
             buildProject; exit 0;;
         n)
-            . $PWD/$NAMESPACE_SCRIPT
+            . $NAMESPACE_SCRIPT
             setFileNameVariables $OPTARG
             buildNamespace; exit 0;;
         c)
-            . $PWD/$CLASS_SCRIPT
+            . $CLASS_SCRIPT
             setFileNameVariables $OPTARG
             buildClass; exit 0;;
         s)
-            . $PWD/$STRUCT_SCRIPT
+            . $STRUCT_SCRIPT
             setFileNameVariables $OPTARG
             buildStruct; exit 0;;
         h)
-            . $PWD/$HEADER_SCRIPT
+            . $HEADER_SCRIPT
             setFileNameVariables $OPTARG
             buildHeader; exit 0;;
         : )
