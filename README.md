@@ -10,4 +10,18 @@ cd cpp-build-system
 ./install.sh
 ```
 
+## Usage
 
+Create a new project directory:
+
+```shell
+build -p Calculator
+```
+Creates Calculator parent directory with following sub directories and files:
+- Calculator/bin
+- Calculator/build
+- Calculator/include
+- Calculator/lib
+- Calculator/src
+- Calculator/src/main.cpp
+- Calculator/test
