@@ -2,8 +2,10 @@
 
 OPTIND=1 # Reset in case previously used in shell
 
-source build-functions.sh
-source build-variables.sh
+SOURCE_DIR="$(dirname "$(readlink -f "$0")")"
+
+source $SOURCE_DIR/build-functions.sh
+source $SOURCE_DIR/build-variables.sh
 
 if [ $# -eq 0 ]; then
     usage
@@ -11,7 +13,7 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ "$(toLower $1)" == "make" ]; then
-    . $MAKE_SCRIPT
+    . $SOURCE_DIR/$MAKE_SCRIPT
     exit 0
 fi
 
@@ -19,23 +21,23 @@ fi
 while getopts ":p:n:c:s:h:" opt; do
     case "$opt" in
         p)
-            . $PROJECT_SCRIPT
+            . $SOURCE_DIR/$PROJECT_SCRIPT
             setFileNameVariables $OPTARG
             buildProject; exit 0;;
         n)
-            . $NAMESPACE_SCRIPT
+            . $SOURCE_DIR/$NAMESPACE_SCRIPT
             setFileNameVariables $OPTARG
             buildNamespace; exit 0;;
         c)
-            . $CLASS_SCRIPT
+            . $SOURCE_DIR/$CLASS_SCRIPT
             setFileNameVariables $OPTARG
             buildClass; exit 0;;
         s)
-            . $STRUCT_SCRIPT
+            . $SOURCE_DIR/$STRUCT_SCRIPT
             setFileNameVariables $OPTARG
             buildStruct; exit 0;;
         h)
-            . $HEADER_SCRIPT
+            . $SOURCE_DIR/$HEADER_SCRIPT
             setFileNameVariables $OPTARG
             buildHeader; exit 0;;
         : )
